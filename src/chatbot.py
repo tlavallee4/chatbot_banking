@@ -30,9 +30,20 @@ def get_account():
     if account_number not in ACCOUNTS:
         raise ValueError("Account number entered does not exist.")
     return account_number
+
+# get amount with empty parentheses - not taking any parameters
+# prompt user to enter their amount
+def get_amount():
+    account_amount = input("Enter the transaction amount:")
+    try:
+        account_amount = float(account_amount)
+    except ValueError:
+        raise ValueError("Invalid amount. Amount must be numeric.")
+    if account_amount <= 0:
+        raise ValueError("Invalid amount. Please enter a positive number.")
+    return account_amount
     
-
-
+        
 
 
 ## GIVEN CHATBOT FUNCTION
