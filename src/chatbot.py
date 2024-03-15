@@ -35,6 +35,8 @@ def get_account():
 # prompt user to enter their amount
 def get_amount():
     account_amount = input("Enter the transaction amount:")
+    #returning account number as float
+    #raises exceptions if the amount entered is not numeric or is negative
     try:
         account_amount = float(account_amount)
     except ValueError:
@@ -42,6 +44,19 @@ def get_amount():
     if account_amount <= 0:
         raise ValueError("Invalid amount. Please enter a positive number.")
     return account_amount
+
+# getting the account balance from ACCOUNTS dictionary
+def get_balance(account: int):   
+    if account in ACCOUNTS:
+        balance = ACCOUNTS[account]['balance']
+        return f"Your current balance for account {account} is ${balance:.2f}."
+    # raising ValueError if account number does not exist in the ACCOUNTS dictionary
+    else:
+        raise ValueError("Account number does not exist.")
+        
+        
+        
+
     
         
 
