@@ -6,7 +6,7 @@ Usage:
 """
 import unittest 
 from unittest.mock import patch
-from src.chatbot import get_account, get_amount, get_balance
+from src.chatbot import get_account, get_amount, get_balance, make_deposit
 from src.chatbot import VALID_TASKS, ACCOUNTS
 
 
@@ -80,21 +80,34 @@ class ChatbotTests(unittest.TestCase):
             self.assertEqual(str(context.exception), "Invalid amount. Please enter a positive number.")
             
     def test_valid_account(self):
-            #Arrange
-            account = 123456
-            expected_result = 'Your current balance for account 123456 is $1000.00.'
+        #Arrange
+        account = 123456
+        expected_result = 'Your current balance for account 123456 is $1000.00.'
 
-            #Act
-            result = get_balance(account)
-            #Assert
-            self.assertEqual(expected_result, result)
+        #Act
+        result = get_balance(account)
+        #Assert
+        self.assertEqual(expected_result, result)
             
     def test_invalid_account(self):
-            #Arrange
-            account = 112233
-            expected_result = 'Account number does not exist.'
+        #Arrange
+        account = 112233
+        expected_result = 'Account number does not exist.'
             
-            #Act 
-            with self.assertRaises(ValueError) as context:
-                get_balance(account)
-            self.assertEqual(str(context.exception), "Account number does not exist.")
+        #Act & Assert
+        with self.assertRaises(ValueError) as context:
+            get_balance(account)
+        self.assertEqual(str(context.exception), "Account number does not exist.")
+
+    def test_deposit_update(self):
+        #Arrange
+        account_number = 123456
+        amount = 1500.01
+        balance = ACCOUNTS[account_number]['balance'] = 1000.0
+        expected_result = "Your current balance for account 123456 is $1000.00."
+
+        #Act
+        result = make_deposit(account_number, amount)
+
+        #Assert
+        self.assertEqual(expected_result, result)

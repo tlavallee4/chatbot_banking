@@ -53,6 +53,22 @@ def get_balance(account: int):
     # raising ValueError if account number does not exist in the ACCOUNTS dictionary
     else:
         raise ValueError("Account number does not exist.")
+
+# Making a deposit
+# raises ValueErrors if the account number is less than 0 or does not exist
+def make_deposit(account: int, amount: float):
+        if account not in ACCOUNTS:
+            raise ValueError("Account number does not exist.")
+        elif amount < 0:
+            raise ValueError("Invalid Amount. Amount must be positive.")
+        # retrieving the value of the balance from the accounts dictionary
+        # adding the deposit amount and updating the new accounts dictionary
+        else:
+            balance = ACCOUNTS[account]['balance']
+            deposit_amount = balance + amount
+            new_balance = ACCOUNTS[account]['balance']
+        return f"Your current balance for account {account} is ${balance:.2f}."
+
         
         
         
