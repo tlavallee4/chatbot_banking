@@ -80,21 +80,9 @@ def user_selection():
     
     return selected_task
 
-
-
-
-
-        
-        
-        
-
-    
-        
-
-
 ## GIVEN CHATBOT FUNCTION
 ## REQUIRES REVISION
-"""
+
 def chatbot():
     '''
     The main program.  Uses the functionality of the functions:
@@ -113,6 +101,7 @@ def chatbot():
             ## CALL THE user_selection FUNCTION HERE 
             ## CAPTURING THE RESULTS IN A VARIABLE CALLED
             ## selection:
+            selection = user_selection()
 
 
             if selection != "exit":
@@ -124,6 +113,7 @@ def chatbot():
                         ## CALL THE get_account FUNCTION HERE
                         ## CAPTURING THE RESULTS IN A VARIABLE 
                         ## CALLED account:
+                        account = get_account()
 
 
                         valid_account = True
@@ -134,6 +124,8 @@ def chatbot():
                         ## CALL THE get_balance FUNCTION HERE
                         ## PASSING THE account VARIABLE DEFINED 
                         ## ABOVE, AND PRINT THE RESULTS:
+                        account_balance = get_balance(account)
+                        print(account_balance)
 
                 else:
 
@@ -144,6 +136,7 @@ def chatbot():
                             ## CALL THE get_amount FUNCTION HERE
                             ## AND CAPTURE THE RESULTS IN A VARIABLE 
                             ## CALLED amount:
+                            amount = get_amount()
 
 
                             valid_amount = True
@@ -153,6 +146,8 @@ def chatbot():
                 ## CALL THE make_deposit FUNCTION HERE PASSING THE 
                 ## VARIABLES account AND amount DEFINED ABOVE AND 
                 ## PRINT THE RESULTS:
+                account_deposit = make_deposit(account, amount)
+                print(account_deposit)
 
 
             else:
@@ -163,9 +158,8 @@ def chatbot():
             print(e)
 
     print("Thank you for banking with PiXELL River Financial.")
-"""
+
     
-"""
+
 if __name__ == "__main__":
     chatbot()
-"""
