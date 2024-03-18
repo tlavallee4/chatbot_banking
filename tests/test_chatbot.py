@@ -6,7 +6,7 @@ Usage:
 """
 import unittest 
 from unittest.mock import patch
-from src.chatbot import get_account, get_amount, get_balance, make_deposit
+from src.chatbot import get_account, get_amount, get_balance, make_deposit, user_selection
 from src.chatbot import VALID_TASKS, ACCOUNTS
 
 
@@ -135,4 +135,41 @@ class ChatbotTests(unittest.TestCase):
             with self.assertRaises(ValueError) as context:
                 make_deposit(account, amount)
                 
+            self.assertEqual(str(context.exception), expected_result)
+
+    def test_valid_lowercase_selection(self):
+        with patch("builtins.input") as mock_input:
+            #Arrange
+            mock_input.side_effect = ['balance']
+            expected_result = "balance"
+            
+            #Act 
+            result = user_selection()
+            
+            #Assert
+            self.assertEqual(expected_result, result)
+
+    def test_returned_selection(self):
+        with patch("builtins.input") as mock_input: 
+            # Arrange
+            mock_input.side_effect = ["DEPOSIT"]
+            expected_result = 'deposit'
+
+            # Act
+            result = user_selection()
+            
+            #Assert
+            self.assertEqual(expected_result, result)
+
+
+
+    def test_invalid_selection(self):
+        with patch("builtins.input") as mock_input: 
+            # Arrange
+            mock_input.side_effect = ["invalid_selection"]
+            expected_result = 'Invalid task. Please choose balance, deposit, or exit.'
+
+            #Act & Assert
+            with self.assertRaises(ValueError) as context:
+                user_selection()
             self.assertEqual(str(context.exception), expected_result)

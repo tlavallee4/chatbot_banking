@@ -70,6 +70,20 @@ def make_deposit(account: int, amount: float):
     
     return f"Your current balance for account {account} is ${new_balance:.2f}."
 
+# prompting user for selection
+def user_selection():
+    selected_task = input("What would you like to do (balance/deposit/exit)?")
+    selected_task = selected_task.lower()
+    # raise ValueError if task is invlad
+    if selected_task not in VALID_TASKS:
+        raise ValueError("Invalid task. Please choose balance, deposit, or exit.")
+    
+    return selected_task
+
+
+
+
+
         
         
         
