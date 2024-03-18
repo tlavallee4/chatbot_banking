@@ -103,8 +103,9 @@ class ChatbotTests(unittest.TestCase):
         #Arrange
         account_number = 123456
         amount = 1500.01
-        balance = ACCOUNTS[account_number]['balance'] = 1000.0
-        expected_result = "Your current balance for account 123456 is $1000.00."
+        balance = 1000.0
+        new_balance = balance + amount
+        expected_result = f"Your current balance for account {account_number} is ${new_balance:.2f}."
 
         #Act
         result = make_deposit(account_number, amount)
@@ -122,7 +123,7 @@ class ChatbotTests(unittest.TestCase):
             with self.assertRaises(ValueError) as context:
                 make_deposit(account, amount)
                 
-            self.assertEqual(str(context.exception), "Account number does not exist.")
+            self.assertEqual(str(context.exception), expected_result)
 
     def test_deposit_negative_amount(self):
             # Arrange
@@ -134,4 +135,4 @@ class ChatbotTests(unittest.TestCase):
             with self.assertRaises(ValueError) as context:
                 make_deposit(account, amount)
                 
-            self.assertEqual(str(context.exception), "Invalid Amount. Amount must be positive.")
+            self.assertEqual(str(context.exception), expected_result)
