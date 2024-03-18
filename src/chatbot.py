@@ -2,8 +2,8 @@
 Description: Chatbot application.  Allows user to perform 
 balance inquiries and make deposits to their accounts.
 Author: ACE Department
-Modified by: {Student Name}
-Date: 2023-10-15
+Modified by: Tanelle Lavallee
+Date: 2023-10-16
 Usage: From the console: python src/chatbot.py
 """
 
