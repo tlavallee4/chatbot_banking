@@ -29,6 +29,7 @@ def get_account():
         raise ValueError("Account number must be a whole number.")
     if account_number not in ACCOUNTS:
         raise ValueError("Account number entered does not exist.")
+    
     return account_number
 
 # get amount with empty parentheses - not taking any parameters
@@ -66,7 +67,7 @@ def make_deposit(account: int, amount: float):
     else:
         balance = ACCOUNTS[account]['balance']
         new_balance = balance + amount
-        ACCOUNTS[account]['balance'] = new_balance
+    
     return f"Your current balance for account {account} is ${new_balance:.2f}."
 
         

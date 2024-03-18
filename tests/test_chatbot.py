@@ -82,7 +82,7 @@ class ChatbotTests(unittest.TestCase):
     def test_valid_account(self):
         #Arrange
         account = 123456
-        expected_result = 'Your current balance for account 123456 is $1000.00.'
+        expected_result = f'Your current balance for account {account} is $1000.00.'
 
         #Act
         result = get_balance(account)
