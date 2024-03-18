@@ -146,8 +146,8 @@ def chatbot():
                 ## CALL THE make_deposit FUNCTION HERE PASSING THE 
                 ## VARIABLES account AND amount DEFINED ABOVE AND 
                 ## PRINT THE RESULTS:
-                account_deposit = make_deposit(account, amount)
-                print(account_deposit)
+                deposit = make_deposit(account, amount)
+                print(deposit)
 
 
             else:
